@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 
@@ -14,3 +13,9 @@ valor_udis = pd.Series(datos_udis[1], datos_udis[0], dtype=float)
 cantidad_udis_por_persona = pd.Series(pensiones_en_pesos.values / valor_udis[list(fechas_jubilacion.values)].values, index=datos_jubilados[0])
 
 a_recibir = pd.Series(cantidad_udis_por_persona * valor_udis[list(fechas_a_consultar)].values, index=datos_jubilados[0])
+
+a_recibir = a_recibir.sort_index()
+
+print(a_recibir)
+
+a_recibir.to_csv("final.csv")
